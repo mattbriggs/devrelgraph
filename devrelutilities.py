@@ -1,6 +1,5 @@
-''' Name
-
-    This script will create nodes from the files in markdown.
+''' Devrel Utilites
+    Contains methods for commons tasks in parsing the repo.
 '''
 
 import os
@@ -37,7 +36,7 @@ def write_csv(outbody, path):
     csvout.close()
 
 
-def make_path_url(instring):
+def make_path_url_azure_stack(instring):
     '''Take a filepath and turns into a url for the docs repo.
     C:\Git\MS\azure-stack-docs-pr\azure-stack\operator\azure-stack-add-vm-image.md
     https://docs.microsoft.com/en-us/azure-stack/operator/azure-stack-add-vm-image
@@ -66,6 +65,7 @@ def get_files(inpath):
                 entry = path + "\\" + filename
                 outlist.append(entry)
     return outlist
+
 
 def get_all_files(inpath):
     '''With the directory path, returns a list of markdown file paths.'''
