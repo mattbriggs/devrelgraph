@@ -21,7 +21,7 @@ def get_links(infile, edges):
         soup = BeautifulSoup(html_doc, 'html.parser')
         for link in soup.find_all('a'):
             link_body = link['href']
-            if link_body[3:] == "http":
+            if link_body[:4] == "http":
                 link_type = "link-external"
             else:
                 link_type = "link-internal"
