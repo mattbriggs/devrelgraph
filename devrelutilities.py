@@ -55,8 +55,8 @@ def make_path_url_azure_repo(instring):
     return "https://docs.microsoft.com/en-us/azure/{}".format(stem)
 
 
-def get_files(inpath):
-    '''With the directory path, returns a list of markdown file paths.'''
+def get_files_md(inpath):
+    '''Returns a list of markdown file paths.'''
     outlist = []
     for (path, dirs, files) in os.walk(inpath):
         for filename in files:

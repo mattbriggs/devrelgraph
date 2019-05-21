@@ -13,26 +13,26 @@ import json
 import os
 
 
-def remove_items(inlist, droplist):
-    '''Takes a list and then drops items in the black list.'''
+def remove_items_from_repo(inlist, droplist):
+    '''Takes a list and then drops items in the blacklist.'''
     outlist = []
+    dropset = set(droplist)
     for i in inlist:
-        check = i.lower()
-        for j in droplist:
-            if check.find(j) > 0:
-                print("Dropped {}".format(i))
-            else:
-                outlist.append(i)
+        filename = i.split("\\")[-1].split(".")[0].lower()
+        print(filename)
+        if filename not in dropset:
+            outlist.append(i)
     return outlist
 
-def create_nodes(inrepo, outpath, blacklist):
+
+def create_nodes(inrepo, inblacklist):
     '''With the name of a repo and a blacklist, parses a docs repo looking for target files and creates a table with the nodes.'''
     try:
         files = DR.get_all_files(inrepo)
-        files_to_get = remove_items(files, blacklist)
+        docstoget = remove_items_from_repo(files, inblacklist)
     
         nodes = [["path", "type", "filename"]]
-        for i in files_to_get:
+        for i in docstoget:
             file, ext = os.path.splitext(i)
             ext = ext[1:] #trim the extension dot.
             path = i[9:] # trim the directory stem (C:\Git\MS\)
@@ -44,9 +44,9 @@ def create_nodes(inrepo, outpath, blacklist):
             elif include > 0:
                 nodes.append([path, "include", filename])
             elif media > 0:
-                nodes.append([path, "media",filename])
+                nodes.append([path, "media", filename])
             elif ext == "md":
-                nodes.append([path,  "article", filename])
+                nodes.append([path, "article", filename])
 
         return nodes
 
@@ -65,11 +65,11 @@ def main():
     path_out = config["reportoutput"]
     blacklist = config["blacklist"]
     
-    print("Starting...:") 
-    nodes = create_nodes(path_in, path_out, blacklist)
+    print("Starting...") 
+    doc_nodes = create_nodes(path_in, blacklist)
     nodes_file = path_out + "nodefile.csv"
-    DR.write_csv(nodes, nodes_file)
-    print("Saved {}".format(nodes_file ))
+    DR.write_csv(doc_nodes, nodes_file)
+    print("Saved {}".format(nodes_file))
 
 
 if __name__ == "__main__":

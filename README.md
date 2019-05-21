@@ -5,7 +5,7 @@ Hackathon project for graph  database of docs that was started at Write the Docs
 ## Cypher to load files
 
 ```USING PERIODIC COMMIT
-LOAD CSV WITH HEADERS FROM "http://www.mattbriggs.us/mycdn/nodefile.csv" AS row
+LOAD CSV WITH HEADERS FROM "http://MATTBRIGGS.US/mycdn/nodefile.csv" AS row
 CREATE (:Doc {filename: row.filename, filetype: row.type, path: row.path});```
 
 Note: You can also use "file:///" to point to a local file.
