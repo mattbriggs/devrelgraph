@@ -1,5 +1,6 @@
-# devrelgraph
-Hackathon project for graph  database for docs.
+# DevRelGraph
+
+Hackathon project for graph  database of docs that was started at Write the Docs 2019.
 
 ## Cypher to load files
 
