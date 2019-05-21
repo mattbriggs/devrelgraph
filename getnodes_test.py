@@ -1,4 +1,12 @@
-import metadata as MD
+import getnodes as GN
 import devrelutilities as DR
 
-def test_get_metadata():
+TESTREPO = "testdata\\"
+OUTPATH = "testdata\\"
+TESTBLACKLIST = ["index"]
+
+def test_create_nodes():
+    testlist = GN.create_nodes(TESTREPO, OUTPATH, TESTBLACKLIST)
+    result = [['path', 'type', 'filename'], ['\\file1.md', 'article', 'file1'], ['\\file2.md', 'article', 'file2'], ['\\file3.md', 'article', 'file3']]
+
+    assert testlist == result

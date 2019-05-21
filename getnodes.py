@@ -4,7 +4,7 @@
     
 {   "repoinput" :       "path to the target repo", 
     "reportoutput" :    "path to the directory to put put the CSV.",
-    "blacklsit":        "list of filenames to exclude." }
+    "blacklist":        "list of filenames to exclude." }
 
 '''
 
@@ -54,6 +54,7 @@ def create_nodes(inrepo, outpath, blacklist):
         print("There was an issue: {}".format(e))
         return [[]]
 
+
 def main():
     '''Generate Neo4J files for importing into database.'''
 
@@ -69,7 +70,7 @@ def main():
     nodes_file = path_out + "nodefile.csv"
     DR.write_csv(nodes, nodes_file)
     print("Saved {}".format(nodes_file ))
-    
+
 
 if __name__ == "__main__":
     main()
