@@ -46,7 +46,7 @@ def create_nodes(inrepo, outpath, blacklist):
             elif media > 0:
                 nodes.append([path, "media",filename])
             elif ext == "md":
-                nodes.append([path,  ext, filename])
+                nodes.append([path,  "article", filename])
 
         return nodes
 
@@ -66,9 +66,9 @@ def main():
     
     print("Starting...:") 
     nodes = create_nodes(path_in, path_out, blacklist)
-    nodes_file = outpath + "nodefile.csv"
+    nodes_file = path_out + "nodefile.csv"
     DR.write_csv(nodes, nodes_file)
-    print("Saved {}".format(created))
+    print("Saved {}".format(nodes_file ))
     
 
 if __name__ == "__main__":
