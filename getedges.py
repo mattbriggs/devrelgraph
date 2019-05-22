@@ -1,7 +1,19 @@
 """:START_ID,role,:END_ID,:TYPE
 keanu,"Neo",tt0133093,ACTED_IN
 laurence,"Morpheus",tt0133093,ACTED_IN
-carrieanne,"Trinity",tt0234215,ACTED_IN"""
+carrieanne,"Trinity",tt0234215,ACTED_IN
+
+To load:
+
+worked:
+LOAD CSV FROM "http://MATTBRIGGS.US/mycdn/edgefile.csv" AS line
+MERGE (n:A {filename : line.START_ID})
+WITH line, n
+MERGE (m:B {filename : line.END_ID})
+WITH m,n
+MERGE (n)-[:LINKS]->(m);
+
+"""
 
 import os
 import csv
