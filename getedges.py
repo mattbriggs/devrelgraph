@@ -1,17 +1,17 @@
-""":START_ID,role,:END_ID,:TYPE
-keanu,"Neo",tt0133093,ACTED_IN
-laurence,"Morpheus",tt0133093,ACTED_IN
-carrieanne,"Trinity",tt0234215,ACTED_IN
+"""
+Script creates a CSV that contains the following columns from links.
 
-To load:
+:START_ID","asset",":END_ID",":TYPE
 
-worked:
-LOAD CSV FROM "http://MATTBRIGGS.US/mycdn/edgefile.csv" AS line
-MERGE (n:A {filename : line.START_ID})
-WITH line, n
-MERGE (m:B {filename : line.END_ID})
-WITH m,n
-MERGE (n)-[:LINKS]->(m);
+Steps:
+1. Check that you have a configuration file `config.json` that contains a 
+JSON object the following attributes: { "repoinput" : "path to the target repo", 
+"reportoutput" : "output directory" }
+2. In the main() routine the config.json is loaded. Check the path.
+2.  Check that you have the output CSV of the getnodes.py script. The script gets
+the CSV, and then loops over each 'article' node, retrieves the links, and then
+builds the output CSV.
+3. Run the script.
 
 """
 
