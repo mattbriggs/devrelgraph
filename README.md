@@ -8,8 +8,8 @@ This is a set of small scripts that will crawl and parse a markdown repository i
 
 The two main scripts are:
 
-| Script | Input | Output | Desscription |
-| --- | --- | --- | --- | --- |
+| Script | Input | Output | Description |
+| --- | --- | --- | --- |
 | getgraph.py | markdown repo | node.json<br>edge.json | This script parses the markdown to create a set of nodes from articles, media files, and external locations. |
 | createcypher.py | node.json<br>edge.json | node.cql<br>edge.cql | This script prepares the JSON files as Cypher files to be ingested by Neo4j. |
 
@@ -46,9 +46,10 @@ You will need to use a Neo4J database. You can find out more about Neo4J at: htt
     ![Noe4J database](/media/graph.png)
 
 10.  Get the links to a single mode. Find a value to grab the node. In this case I'm using a file path.
-    ```cypher
-    MATCH (a:Doc {path: 'azure-docs-cli\\docs-ref-conceptual\\get-started-with-azure-cli.md'})-[r]-(n) RETURN a, n
-    ```
+
+```cypher
+MATCH (a:Doc {path: 'azure-docs-cli\\docs-ref-conceptual\\get-started-with-azure-cli.md'})-[r]-(n) RETURN a, n
+```
 
 ![Cypher queries in the database](/media/singlenode.png)
 
