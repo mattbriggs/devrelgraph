@@ -105,3 +105,4 @@ venv.bak/
 
 #devrealgraph ignore
 config.json
+.vscode
