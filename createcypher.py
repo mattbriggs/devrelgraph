@@ -34,8 +34,11 @@ def main():
         a = "a" + def_make_alpha(indx)
         b = "b" + def_make_alpha(indx)
         r = "r" + def_make_alpha(indx)
-        edge_cypher += 'MATCH ({}:Doc) Where {}.path = "{}", Match ({}:Doc) Where {}.path = "{}" CREATE ({})-[{}:LINKS]->({})\n'.format(a, a, value[0], b, b, value[2], a, r, b)
-    edge_cypher += ""
+        edge_cypher += 'MATCH ({}:Doc) Where {}.path = "{}"\nMatch ({}:Doc) Where {}.path = "{}"\nCREATE ({})-[{}:LINKS]->({})\nWITH {}\n\n'.format(a, a, value[0], b, b, value[2], a, r, b, r)
+    edge_cypher += "Return {}".format(r)
+
+    node_cypher = node_cypher.replace('\\','\\\\')
+    edge_cypher = edge_cypher.replace('\\','\\\\')
 
     DR.write_text(node_cypher, "C:\\data\\node-cypher.cql")
     DR.write_text(edge_cypher, "C:\\data\\edge-cypher.cql")

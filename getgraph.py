@@ -103,7 +103,7 @@ def add_nodes_from_edges(edges, nodes):
     '''Take edges and nodes and if a targer in edges isn't a node, 
     add the node. Return nodes'''
     for value in edges.values():
-        if value[0] in set(nodes.keys()):
+        if value[2] in set(nodes.keys()):
             pass
         else:
             nodes[value[2]] = [value[2], "external", value[2]]
